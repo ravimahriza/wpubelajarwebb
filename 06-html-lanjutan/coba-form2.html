@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh input Atribut, Checkbox, & Radio</title>
+  </head>
+  <body>
+    <h1>Contoh input Atribut, Checkbox, & Radio</h1>
+    <!-- autocomplete="off" -> untuk mematikan histori ketika mau input nama -->
+    <!-- autofocus -> ketika halaman dibuka kursor otomatis berada di kolom tersebut. jadi tidak perlu klik atau tab -->
+    <!-- required -> data tidak bisa dikirim selama form belum diisi -->
+    <!-- checked -> auto terpilih saat halaman dibuka -->
+    <form>
+      <label for="nama"></label>
+      <input
+        type="text"
+        name="nama"
+        id="nama"
+        placeholder="nama"
+        autocomplete="off"
+        autofocus
+        required
+      />
+      <h3>Hobi</h3>
+      <label for="hobi1">
+        <input type="checkbox" name="hobi1" id="hobi1" value="olahraga" />
+        Olahraga
+      </label>
+
+      <label for="hobi1">
+        <input type="checkbox" name="hobi1" id="hobi1" value="ngoding" />
+        Ngoding
+      </label>
+
+      <br />
+      <h3>Jenis Kelamiin:</h3>
+      <label for="pria">
+        <input type="radio" name="gender" id="pria" value="pria" checked />
+        Pria
+      </label>
+      <label for="wanita">
+        <input type="radio" name="gender" id="wanita" value="wanita" />
+        Wanita
+      </label>
+
+      <br />
+      <button type="submit">Kirim</button>
+    </form>
+  </body>
+</html>
