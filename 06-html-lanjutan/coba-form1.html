@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coba elemen form</title>
+    <style>
+      .kolom1 {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- input type : text, password, email, number, date, color, etc -->
+    <!-- jika ada "for" maka wajib ada "id" agar ketika tulisan "username:" diklik bisa auto ke kolom pengisian-->
+    <h2>Contoh Elemen-Elemen Form</h2>
+    <form>
+      <!-- contoh 1 : label dan input dipisah. digabung menggunakan "id". cocok untuk belajar -->
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" />
+      <br />
+      <!-- contoh 2 : input dibungkus dengan label. tidak memerlukan "for" & "id". lebih simpel dan praktis -->
+      <label>
+        <input
+          type="password"
+          name="password"
+          placeholder="masukkan password"
+        />
+      </label>
+      <br />
+      <label
+        >Email:
+        <input type="email" name="email" />
+      </label>
+      <br />
+      <label>
+        <input
+          type="number"
+          name="angka"
+          placeholder="input number"
+          min="0"
+          max="50000000"
+          step="5"
+        />
+      </label>
+      <br />
+      <label
+        >Tanggal lahir:
+        <input type="date" name="date" />
+      </label>
+      <br />
+      <label for="color"
+        >Pilih warna:
+        <input type="color" name="color" id="color" />
+      </label>
+      <br />
+      <button type="submit">Kirim</button>
+    </form>
+    <br />
+    <br />
+    <h1>Mari Kita Rapikan</h1>
+    <p>Tipe-Tipe Form</p>
+    <br />
+    <form>
+      <table>
+        <tr>
+          <td class="kolom1"><label for="name">Username</label></td>
+          <td>:</td>
+          <td><input type="text" name="username" id="name" /></td>
+        </tr>
+        <tr>
+          <td class="kolom1"><label for="pass">Password</label></td>
+          <td>:</td>
+          <td><input type="password" name="pass" id="pass" /></td>
+        </tr>
+        <tr>
+          <td class="kolom1"><label for="mail">Email</label></td>
+          <td>:</td>
+          <td><input type="email" name="mail" id="mail" /></td>
+        </tr>
+        <tr>
+          <td class="kolom1"><label for="usia">Usia</label></td>
+          <td>:</td>
+          <td>
+            <input type="number" name="usia" id="usia" min="1" max="100" />
+          </td>
+        </tr>
+        <tr>
+          <td class="kolom1">
+            <label for="ttl">Tanggal lahir</label>
+          </td>
+          <td>:</td>
+          <td><input type="date" name="ttl" id="ttl" /></td>
+        </tr>
+        <tr>
+          <td class="kolom1"><label for="warna">Warna favorit</label></td>
+          <td>:</td>
+          <td><input type="color" name="warna" id="warna" /></td>
+        </tr>
+      </table>
+      <br />
+      <button type="submit">Kirim</button>
+    </form>
+  </body>
+</html>
