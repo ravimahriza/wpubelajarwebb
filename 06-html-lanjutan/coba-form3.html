@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select dan Textarea</title>
+  </head>
+  <body>
+    <h3>Kota:</h3>
+    <form>
+      <select name="kota" id="kota" required>
+        <option value="">--Pilih salah satu--</option>
+        <option value="bdg">Bandung</option>
+        <option value="jkt">Jakarta</option>
+        <option value="bgr">Bogor</option>
+        <option value="mdn">Medan</option>
+        <option value="mlg">Malang</option>
+      </select>
+      <br />
+      <h3>About Me:</h3>
+      <textarea
+        name="about"
+        id="about"
+        cols="100"
+        rows="10"
+        placeholder="deskripsikan diri anda"
+        required
+      ></textarea>
+      <br />
+      <button type="submit">Kirim</button>
+    </form>
+  </body>
+</html>
