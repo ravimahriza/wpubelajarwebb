@@ -66,23 +66,32 @@
         <tr>
           <td class="kolom1"><label for="name">Username</label></td>
           <td>:</td>
-          <td><input type="text" name="username" id="name" /></td>
+          <td>
+            <input type="text" name="username" id="name" required autofocus />
+          </td>
         </tr>
         <tr>
           <td class="kolom1"><label for="pass">Password</label></td>
           <td>:</td>
-          <td><input type="password" name="pass" id="pass" /></td>
+          <td><input type="password" name="pass" id="pass" required /></td>
         </tr>
         <tr>
           <td class="kolom1"><label for="mail">Email</label></td>
           <td>:</td>
-          <td><input type="email" name="mail" id="mail" /></td>
+          <td><input type="email" name="mail" id="mail" required /></td>
         </tr>
         <tr>
           <td class="kolom1"><label for="usia">Usia</label></td>
           <td>:</td>
           <td>
-            <input type="number" name="usia" id="usia" min="1" max="100" />
+            <input
+              type="number"
+              name="usia"
+              id="usia"
+              min="1"
+              max="100"
+              required
+            />
           </td>
         </tr>
         <tr>
@@ -95,7 +104,7 @@
         <tr>
           <td class="kolom1"><label for="warna">Warna favorit</label></td>
           <td>:</td>
-          <td><input type="color" name="warna" id="warna" /></td>
+          <td><input type="color" name="warna" id="warna" required /></td>
         </tr>
       </table>
       <br />
