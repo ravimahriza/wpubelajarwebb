@@ -1,0 +1,40 @@
+/* IMPORT FONT FROM GOOGLE */
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap");
+
+/* FONT-FACE FROM COMPUTER YG DIUPLOAD KE WEB */
+@font-face {
+  font-family: ubuntu;
+  src: url("fonts/Ubuntu-Regular.ttf"), format("trutype");
+}
+/* h1 & p1 menggunakan font impor langsung dari google font */
+h1 {
+  font-size: 100px;
+  font-family: "Archivo Black", sans-serif;
+  text-align: center;
+  color: red;
+}
+
+.p1 {
+  font-size: 20px;
+  font-family: "Playwrite GB J", cursive;
+  text-align: center;
+  color: blue;
+}
+
+/* p2 menggunakan font-face dari folder yg diupload ke web */
+.p2 {
+  font-size: 20px;
+  font-family: ubuntu;
+  text-align: center;
+  color: green;
+  font-style: italic;
+}
+/* SHORTHAND AGAR LEBIH RINGKAS (HARUS URUT) : font-style font-weight font-size/line-height font-family*/
+.p3 {
+  font:
+    italic bold 20px/30px helvetica,
+    arial,
+    sans-serif;
+  text-align: center;
+  color: brown;
+}
