@@ -1,0 +1,25 @@
+@font-face {
+  font-family: domine;
+  src: url("fonts/domine/Domine-Bold.ttf"), format("truetype");
+}
+@font-face {
+  font-family: montserrat;
+  src: url("fonts/montserrat/Montserrat-Regular.ttf"), format("truetype");
+}
+
+#container {
+  margin-left: 170px;
+  margin-right: 170px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  background-color: lightgray;
+}
+
+h1 {
+  font: normal bold 80px/20px domine;
+}
+p {
+  font: normal normal 23px/36px montserrat;
+}
