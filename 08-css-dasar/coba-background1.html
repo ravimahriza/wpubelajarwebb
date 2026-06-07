@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coba Background</title>
+    <style>
+      body {
+        background-color: maroon;
+        background-image: url(images/ravi.jpg);
+        background-size: 300px;
+        /* BG Repeat : no-repeat, repeat-x/y, space, round */
+        background-repeat: repeat-x;
+        background-position: left bottom;
+        display: flex;
+        /* (agar body full se layar jika asset masih sedikit) */
+        height: 100vh;
+      }
+      .kotak {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        background-color: yellowgreen;
+      }
+      .kotak2 {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        background-image: url(images/ravi2.jpg);
+        /* agar gambar tidak over */
+        background-size: cover;
+        /* mengatur naik turun gambar */
+        background-position: center 18%;
+      }
+      .kotak3 {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        background-image: radial-gradient(maroon, darkgray);
+      }
+      .kotak4 {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        color: white;
+        background-image: conic-gradient(red, blue);
+      }
+      .kotak5 {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        color: white;
+        background-image: linear-gradient(to right, maroon 50%, darkgreen);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="kotak">solid color</div>
+    <div class="kotak2">image url</div>
+    <div class="kotak3">radial gradient</div>
+    <div class="kotak4">conic gradient</div>
+    <div class="kotak5">linear gradient custom scale</div>
+  </body>
+</html>
