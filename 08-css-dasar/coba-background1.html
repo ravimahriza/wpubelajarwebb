@@ -22,7 +22,7 @@
         font-family: poppins;
       }
       div {
-        margin: 5px;
+        margin: 3px;
       }
       .solid {
         width: 200px;
@@ -55,6 +55,15 @@
         background-size: 500px;
         background-position: -220px -50px;
       }
+      .contain {
+        width: 200px;
+        height: 200px;
+        background-color: #efad05;
+        background-image: url(images/fifin.jpg);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
     </style>
   </head>
   <body>
@@ -73,7 +82,10 @@
           <div class="conic"></div>
         </td>
         <td>
-          <div id="div1" class="image"></div>
+          <div class="image"></div>
+        </td>
+        <td>
+          <div class="contain"></div>
         </td>
       </tr>
       <tr>
@@ -82,6 +94,7 @@
         <td>Radial Gradient</td>
         <td>Conic Gradient</td>
         <td>Image Background</td>
+        <td>Image Contain</td>
       </tr>
     </table>
   </body>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Attachment</title>
+    <style>
+      body {
+        height: 2000px;
+        text-align: center;
+        background-color: maroon;
+        font-family: "open sans", sans-serif;
+        color: antiquewhite;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+      }
+      .scroll {
+        height: 300px;
+        width: 300px;
+        margin: 15px;
+        border: 4px solid #3f0505;
+        background-image: url(images/pusaka.jpg);
+        background-size: 50px;
+        overflow: auto;
+        background-attachment: scroll;
+      }
+      .local {
+        width: 300px;
+        height: 300px;
+        margin: 15px;
+        border: 4px solid #3f0505;
+        background-image: url(images/pusaka.jpg);
+        background-size: 50px;
+        overflow: auto;
+        background-attachment: local;
+      }
+      .fixed {
+        height: 300px;
+        width: 300px;
+        margin: 15px;
+        border: 4px solid #3f0505;
+        background-image: url(images/pusaka.jpg);
+        background-size: 50px;
+        overflow: auto;
+        background-attachment: fixed;
+      }
+      .konten {
+        color: black;
+        line-height: 1.5;
+        background-color: rgb(117 117 117 / 80%);
+      }
+      p {
+        margin: 0;
+      }
+      h3 {
+        margin: 0;
+        text-decoration: underline;
+        color: maroon;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Background Attachment</h1>
+    <p>Mengatur perilaku background di dalam kotak ketik discroll.</p>
+    <br />
+    <section>
+      <div class="scroll">
+        <div class="konten">
+          <h3>Scroll Attachment</h3>
+          <p>Background akan diam jika discroll di dalam maupun di luar</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+            cupiditate quia enim. Sit neque laboriosam ullam perferendis nihil
+            quaerat quam officia optio hic, rem, impedit sunt adipisci assumenda
+            voluptate eum. Aspernatur autem recusandae eius doloremque dolorum
+            cupiditate repudiandae, pariatur aut minus officia dolor aliquid hic
+            rem sequi sapiente. Repellendus ullam voluptates soluta consectetur
+            unde asperiores incidunt rerum in sint nemo saepe praesentium
+            voluptatum, harum iste possimus veniam! Veritatis itaque quos,
+            dignissimos minus assumenda blanditiis eaque ad alias, suscipit at
+            vero voluptates quia ipsum? Aperiam odit eligendi quidem? Maxime,
+            repudiandae. At labore qui recusandae omnis, obcaecati totam
+            expedita quod odit quia!
+          </p>
+        </div>
+      </div>
+      <div class="local">
+        <div class="konten">
+          <h3>Local Attachment</h3>
+          <p>
+            Background akan bergerak jika discroll di dalam dan diam saat
+            discroll di luar
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+            cupiditate quia enim. Sit neque laboriosam ullam perferendis nihil
+            quaerat quam officia optio hic, rem, impedit sunt adipisci assumenda
+            voluptate eum. Aspernatur autem recusandae eius doloremque dolorum
+            cupiditate repudiandae, pariatur aut minus officia dolor aliquid hic
+            rem sequi sapiente. Repellendus ullam voluptates soluta consectetur
+            unde asperiores incidunt rerum in sint nemo saepe praesentium
+            voluptatum, harum iste possimus veniam! Veritatis itaque quos,
+            dignissimos minus assumenda blanditiis eaque ad alias, suscipit at
+            vero voluptates quia ipsum? Aperiam odit eligendi quidem? Maxime,
+            repudiandae. At labore qui recusandae omnis, obcaecati totam
+            expedita quod odit quia!
+          </p>
+        </div>
+      </div>
+      <div class="fixed">
+        <div class="konten">
+          <h3>Fixed Attachment</h3>
+          <p>
+            Background akan diam jika discroll di dalam dan bergerak saat
+            discroll di luar
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+            cupiditate quia enim. Sit neque laboriosam ullam perferendis nihil
+            quaerat quam officia optio hic, rem, impedit sunt adipisci assumenda
+            voluptate eum. Aspernatur autem recusandae eius doloremque dolorum
+            cupiditate repudiandae, pariatur aut minus officia dolor aliquid hic
+            rem sequi sapiente. Repellendus ullam voluptates soluta consectetur
+            unde asperiores incidunt rerum in sint nemo saepe praesentium
+            voluptatum, harum iste possimus veniam! Veritatis itaque quos,
+            dignissimos minus assumenda blanditiis eaque ad alias, suscipit at
+            vero voluptates quia ipsum? Aperiam odit eligendi quidem? Maxime,
+            repudiandae. At labore qui recusandae omnis, obcaecati totam
+            expedita quod odit quia!
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
