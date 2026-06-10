@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiple Background</title>
+    <style>
+      body {
+        height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: darkgrey;
+      }
+      .frame {
+        width: 400px;
+        height: 400px;
+        border: 10px solid navy;
+        margin: auto;
+        background-image:
+          url(images/ravi2.png), url(images/shape.svg), url(images/wavy.png);
+        background-size: 350px, 250px, 600px;
+        background-repeat: no-repeat;
+        background-position:
+          15px -40px,
+          center 30%,
+          bottom 20% left 20%;
+        background-color: beige;
+        border-radius: 50%;
+      }
+      h1 {
+        color: white;
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 40px;
+        text-shadow: 2px 2px 4px black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Profile Card</h1>
+    <div class="frame"></div>
+  </body>
+</html>
