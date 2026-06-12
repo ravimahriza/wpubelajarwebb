@@ -8,9 +8,14 @@
       body {
         font-family: "Courier New", Courier, monospace;
         text-align: center;
-        color: white;
+        line-height: 25px;
+        color: azure;
         background-image:
-          linear-gradient(to bottom, rgb(0 0 56 / 90%) 50%, rgb(0 0 56 / 30%)),
+          linear-gradient(
+            to bottom,
+            rgba(0, 0, 48, 0.8) 40%,
+            rgba(1, 1, 54, 0.273)
+          ),
           url(https://fastly.picsum.photos/id/10/1000/1000.jpg?hmac=8imXWM_Cxe6_cWjyUbT2Vh7oxwiz12HfzJHp6CLoGwM);
         background-size: cover;
         background-position: center;
@@ -19,55 +24,51 @@
       }
       h1 {
         font-size: 40px;
-        font-weight: bolder;
-        text-transform: uppercase;
         font-style: italic;
-        letter-spacing: 3px;
-        background-image: linear-gradient(
-          to right,
-          rgb(38, 255, 0) -20%,
-          rgb(1, 156, 252)
-        );
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        background-image: linear-gradient(to right, #008bff 40%, #5fffec);
+        max-width: 400px;
+        margin: auto;
         background-clip: text;
         color: transparent;
-        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        filter: drop-shadow(0 0 10px rgb(150 252 240 / 50%));
       }
       .konten {
-        background-color: rgb(255, 255, 255, 0.2);
         font-weight: bold;
-        padding: 20px;
-        line-height: 30px;
-        max-width: 500px;
+        background-color: rgba(240, 248, 255, 0.1);
+        width: 500px;
         margin: auto;
+        border: 1px solid rgba(245, 245, 245, 0.2);
         border-radius: 20px;
-        border: 1px solid rgb(255, 255, 255, 0.4);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        margin-top: 40px;
       }
       span {
+        font-style: italic;
         color: crimson;
-        text-shadow: 0 0 10px rgba(220, 20, 60, 0.488);
+        text-shadow: 0 0 10px rgba(243, 67, 102);
       }
       .credit {
-        font-size: 11px;
+        font-size: 13px;
         text-transform: uppercase;
-        letter-spacing: 3px;
-        border-top: 1px solid rgba(255, 255, 255, 0.196);
-        width: 30%;
+        letter-spacing: 2px;
+        border-top: 1px solid rgba(255, 255, 255, 0.222);
+        max-width: 400px;
         margin: auto;
-        padding-top: 13px;
+        padding-top: 15px;
       }
     </style>
   </head>
   <body>
     <br /><br /><br />
     <h1>Fase Runtuh</h1>
-    <div class="box">
-      <p class="konten">
-        "Tak perlu khawatir, ku hanya <span>~~terluka~~.</span><br />Terbiasa
-        tuk pura-pura tertawa <br />Namun bolehkah sekali saja ku menangis?<br />Sebelum
-        kembali membohongi diri."
-      </p>
-    </div>
+    <p class="konten">
+      "Tak perlu khawatir, ku hanya <span>~~terluka~~.</span><br />Terbiasa tuk
+      pura-pura tertawa <br />Namun bolehkah sekali saja ku menangis?<br />Sebelum
+      kembali membohongi diri."
+    </p>
     <br />
     <p class="credit">-- Feby Putri feat Fiersa Besari --</p>
   </body>
