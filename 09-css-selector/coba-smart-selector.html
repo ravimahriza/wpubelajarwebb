@@ -5,7 +5,7 @@
     <title>Latihan Smart Selector</title>
     <style>
       body {
-        font-family: arial;
+        font-family: Arial, Helvetica, sans-serif;
         background-color: #f4f4f4;
       }
       h2 {
@@ -20,27 +20,30 @@
       .gallery img {
         width: 150px;
         cursor: pointer;
+        transition: opacity 0.3s;
       }
       .gallery:hover img:not(:hover) {
         opacity: 0.5;
-        transition: opacity 0.3s;
       }
-      ul {
-        list-style: none;
-      }
+
       li {
+        list-style: none;
         background-color: white;
-        outline: 1px solid #bfbfbf;
+        outline: 1px solid gray;
+        padding: 2px;
       }
       .badge {
-        background-color: red;
-        color: white;
+        background-color: white;
+        font-weight: bold;
+        color: red;
       }
       li:has(.badge) {
-        background-color: lightpink;
+        background-color: red;
+        font-weight: bold;
+        color: white;
       }
       li:has(img) {
-        background-color: lightgreen;
+        background-color: lightsalmon;
       }
     </style>
   </head>
