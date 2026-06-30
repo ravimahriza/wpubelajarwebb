@@ -8,24 +8,30 @@
         font-family: arial;
         color: #333;
       }
+      /* memilih li yg ada di dalam ul */
       ul li {
         color: navy;
       }
+      /* carikan li yg menjadi anak langsung dari ul */
       ul > li {
         outline: 1px solid red;
       }
+      /* saudara/sebelahan. carikan p yang sebelahan dengan h2. bukan anak */
       h2 + p {
         background-color: lightcoral;
       }
+      /* memilih semua span yang berada setelah h1 dalam level yg sama */
       h3 ~ span {
         color: red;
         text-decoration: underline;
       }
+      /* memilih semua a yang punya class .btn */
       a.btn {
         background-color: black;
         color: white;
         text-decoration: none;
       }
+      /* memilih semua elemen yg punya class .btn dan.primary */
       .btn.primary {
         background-color: maroon;
       }

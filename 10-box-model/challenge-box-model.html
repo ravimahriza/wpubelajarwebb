@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge Box Model</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #f5f5f5;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 40px;
+      }
+      .catalog_card {
+        background-color: white;
+        width: 330px;
+        margin: auto;
+        border-radius: 15px;
+        padding: 24px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 10px 20px rgb(0 0 0 / 5%);
+      }
+      .product_image {
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .product_image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .product_category {
+        font-size: 12px;
+        color: crimson;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      .product_name {
+        font-size: 22px;
+        font-weight: bold;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+      }
+      .desc {
+        font-size: 14px;
+        color: #666666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eeeeee;
+        padding-bottom: 20px;
+      }
+      .price_section {
+        margin-bottom: 20px;
+      }
+      .price_section .price {
+        font-size: 26px;
+        color: black;
+        font-weight: bold;
+      }
+      .price_section .price_original {
+        font-size: 15px;
+        color: #999999;
+        text-decoration: line-through;
+        margin-left: 8px;
+      }
+      .size_options_wrapper {
+        border: none;
+      }
+      .size_label_text {
+        font-size: 13px;
+        color: gray;
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+      .size_options {
+        margin-bottom: 25px;
+      }
+      .size_options input[type="radio"] {
+        display: none;
+      }
+      .size_options label {
+        display: inline-block;
+        width: 44px;
+        height: 44px;
+        border: 2px solid gray;
+        border-radius: 8px;
+        text-align: center;
+        line-height: 40px;
+        margin-right: 8px;
+        font-weight: bold;
+        color: #666666;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .size_options input[type="radio"]:checked + label {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        border-color: #1a1a1a;
+      }
+      .buy_button {
+        width: 100%;
+        padding: 16px;
+        background-color: #1a1a1a;
+        border: none;
+        color: aliceblue;
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .buy_button:hover {
+        background-color: #666666;
+      }
+    </style>
+  </head>
+  <body>
+    <article class="catalog_card">
+      <figure class="product_image">
+        <img src="asset/adizero_adios_pro_4.avif" alt="adizero_pro4" />
+      </figure>
+
+      <p class="product_category">adidas sportwears</p>
+      <h3 class="product_name">Adizero Adios Pro 4</h3>
+      <p class="desc">
+        sepatu lari yang dilengkapi karbon Energyrods 2.0, midsole rocker
+        efisien, bantalan ganda Light Strike Pro ultra ringan, dan outsole
+        Continental™ Rubber yang antiselip.
+      </p>
+
+      <div class="price_section">
+        <span class="price">IDR 1,899,999</span>
+        <del class="price_original">IDR 2,399,000</del>
+      </div>
+
+      <form>
+        <fieldset class="size_options_wrapper">
+          <legend class="size_label_text">Pilih ukuran (EUR):</legend>
+          <div class="size_options">
+            <input type="radio" name="size" id="s39" value="39" />
+            <label for="s39">39</label>
+
+            <input type="radio" name="size" id="s40" value="40" />
+            <label for="s40">40</label>
+
+            <input type="radio" name="size" id="s41" value="41" />
+            <label for="s41">41</label>
+
+            <input type="radio" name="size" id="s42" value="42" />
+            <label for="s42">42</label>
+
+            <input type="radio" name="size" id="s43" value="43" />
+            <label for="s43">43</label>
+          </div>
+        </fieldset>
+
+        <button class="buy_button" type="submit">tambahkan ke keranjang</button>
+      </form>
+    </article>
+  </body>
+</html>
