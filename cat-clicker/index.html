@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet the Cat 🐱</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+    * { font-family: 'Nunito', sans-serif; }
+
+    body {
+      background: #fdf6ec;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── floating particles ── */
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      font-size: 1.4rem;
+      animation: floatUp 1.2s ease-out forwards;
+      z-index: 50;
+    }
+    @keyframes floatUp {
+      0%   { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(-120px) scale(1.6) rotate(20deg); }
+    }
+
+    /* ── cat wrapper ── */
+    #cat-wrapper {
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.1s ease;
+    }
+    #cat-wrapper:active { transform: scale(0.93); }
+
+    /* ── cat body ── */
+    #cat-svg {
+      transition: transform 0.15s ease;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
+    }
+
+    /* idle breathing */
+    @keyframes breathe {
+      0%, 100% { transform: scaleY(1);   }
+      50%       { transform: scaleY(1.03); }
+    }
+    #cat-body { animation: breathe 3s ease-in-out infinite; transform-origin: center bottom; }
+
+    /* pet wiggle */
+    @keyframes wiggle {
+      0%   { transform: rotate(0deg);   }
+      20%  { transform: rotate(-8deg);  }
+      40%  { transform: rotate(8deg);   }
+      60%  { transform: rotate(-5deg);  }
+      80%  { transform: rotate(4deg);   }
+      100% { transform: rotate(0deg);   }
+    }
+    .wiggle { animation: wiggle 0.55s ease forwards !important; }
+
+    /* tail wag */
+    @keyframes tailWag {
+      0%,100% { transform: rotate(0deg);  }
+      25%     { transform: rotate(25deg); }
+      75%     { transform: rotate(-15deg); }
+    }
+    #cat-tail { transform-origin: 20% 80%; animation: tailWag 1.4s ease-in-out infinite; }
+
+    /* eyes blink */
+    @keyframes blink {
+      0%,90%,100% { transform: scaleY(1); }
+      95%         { transform: scaleY(0.08); }
+    }
+    .eye { animation: blink 4s infinite; transform-origin: center; }
+
+    /* purr ring */
+    @keyframes purrRing {
+      0%   { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(2.2); opacity: 0;   }
+    }
+    .purr-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid #f9a8d4;
+      pointer-events: none;
+      animation: purrRing 0.7s ease-out forwards;
+    }
+
+    /* speech bubble */
+    #speech-bubble {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      background: white;
+      border: 2px solid #fbbf24;
+      border-radius: 18px;
+      padding: 6px 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #92400e;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+      z-index: 20;
+    }
+    #speech-bubble.show { transform: translateX(-50%) scale(1); }
+    #speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #fbbf24;
+    }
+
+    /* milestone flash */
+    @keyframes flashIn {
+      0%   { opacity:0; transform:translate(-50%,-50%) scale(0.5); }
+      60%  { opacity:1; transform:translate(-50%,-50%) scale(1.1); }
+      100% { opacity:1; transform:translate(-50%,-50%) scale(1);   }
+    }
+    #milestone-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%) scale(0);
+      background: #fef3c7;
+      border: 3px solid #f59e0b;
+      border-radius: 24px;
+      padding: 18px 36px;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #92400e;
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+    }
+    #milestone-toast.show {
+      animation: flashIn 0.4s ease forwards;
+    }
+
+    /* mood bar fill */
+    #mood-fill {
+      transition: width 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    /* counter bounce */
+    @keyframes counterBounce {
+      0%   { transform: scale(1);    }
+      40%  { transform: scale(1.35); }
+      100% { transform: scale(1);    }
+    }
+    .count-bounce { animation: counterBounce 0.3s ease; }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen select-none">
+
+  <!-- ── top bar ── -->
+  <div class="w-full max-w-sm px-4 pt-6 pb-2 flex items-center justify-between">
+    <div class="text-left">
+      <p class="text-xs font-bold text-amber-400 uppercase tracking-widest">Petting Score</p>
+      <p id="pet-count" class="text-4xl font-black text-amber-600 leading-none">0</p>
+    </div>
+    <div class="text-right">
+      <p class="text-xs font-bold text-pink-400 uppercase tracking-widest">Combo</p>
+      <p id="combo-count" class="text-4xl font-black text-pink-500 leading-none">x1</p>
+    </div>
+  </div>
+
+  <!-- ── mood bar ── -->
+  <div class="w-full max-w-sm px-4 mb-4">
+    <div class="flex justify-between text-xs font-bold text-amber-400 mb-1">
+      <span>😐 Mood</span>
+      <span id="mood-label">Neutral</span>
+    </div>
+    <div class="bg-amber-100 rounded-full h-3 overflow-hidden border border-amber-200">
+      <div id="mood-fill" class="h-full rounded-full bg-gradient-to-r from-yellow-300 to-pink-400" style="width:40%"></div>
+    </div>
+  </div>
+
+  <!-- ── cat stage ── -->
+  <div class="relative flex items-center justify-center mb-6" style="width:260px; height:280px;">
+
+    <!-- speech bubble -->
+    <div id="speech-bubble">Purrrr~ 🐾</div>
+
+    <!-- cat SVG -->
+    <div id="cat-wrapper" aria-label="Pet the cat" role="button" tabindex="0" title="Click to pet!">
+      <svg id="cat-svg" width="220" height="240" viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- tail -->
+        <g id="cat-tail">
+          <path d="M60 195 Q20 210 30 240 Q50 260 70 230 Q80 210 70 200 Z" fill="#f9c784"/>
+          <path d="M60 195 Q20 210 30 240 Q40 255 55 245 Q65 225 68 205 Z" fill="#fad9a1"/>
+        </g>
+
+        <!-- body -->
+        <g id="cat-body">
+          <ellipse cx="110" cy="185" rx="68" ry="58" fill="#f9c784"/>
+          <ellipse cx="110" cy="185" rx="48" ry="40" fill="#fde9bc"/>
+
+          <!-- paws -->
+          <ellipse cx="68" cy="225" rx="22" ry="12" fill="#f9c784"/>
+          <ellipse cx="152" cy="225" rx="22" ry="12" fill="#f9c784"/>
+          <ellipse cx="68" cy="225" rx="14" ry="8" fill="#fde9bc"/>
+          <ellipse cx="152" cy="225" rx="14" ry="8" fill="#fde9bc"/>
+
+          <!-- toe beans (left) -->
+          <ellipse cx="60" cy="228" rx="4" ry="3" fill="#ffb3c6"/>
+          <ellipse cx="69" cy="230" rx="4" ry="3" fill="#ffb3c6"/>
+          <ellipse cx="78" cy="228" rx="4" ry="3" fill="#ffb3c6"/>
+
+          <!-- toe beans (right) -->
+          <ellipse cx="144" cy="228" rx="4" ry="3" fill="#ffb3c6"/>
+          <ellipse cx="153" cy="230" rx="4" ry="3" fill="#ffb3c6"/>
+          <ellipse cx="162" cy="228" rx="4" ry="3" fill="#ffb3c6"/>
+        </g>
+
+        <!-- head -->
+        <ellipse cx="110" cy="105" rx="62" ry="58" fill="#f9c784"/>
+
+        <!-- ears -->
+        <polygon points="58,62 48,30 82,55" fill="#f9c784"/>
+        <polygon points="162,62 172,30 138,55" fill="#f9c784"/>
+        <polygon points="62,58 55,38 80,56" fill="#ffb3c6"/>
+        <polygon points="158,58 165,38 140,56" fill="#ffb3c6"/>
+
+        <!-- face markings -->
+        <path d="M80 95 Q90 90 100 95" stroke="#f0a050" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M120 95 Q130 90 140 95" stroke="#f0a050" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+        <!-- eyes -->
+        <g class="eye" style="transform-origin:88px 102px">
+          <ellipse cx="88" cy="102" rx="12" ry="13" fill="#2d2d2d"/>
+          <ellipse cx="88" cy="102" rx="10" ry="11" fill="#1a1a2e"/>
+          <ellipse cx="84" cy="98" rx="3.5" ry="3.5" fill="white"/>
+          <ellipse cx="91" cy="105" rx="2" ry="2" fill="white" opacity="0.6"/>
+        </g>
+        <g class="eye" style="transform-origin:132px 102px">
+          <ellipse cx="132" cy="102" rx="12" ry="13" fill="#2d2d2d"/>
+          <ellipse cx="132" cy="102" rx="10" ry="11" fill="#1a1a2e"/>
+          <ellipse cx="128" cy="98" rx="3.5" ry="3.5" fill="white"/>
+          <ellipse cx="135" cy="105" rx="2" ry="2" fill="white" opacity="0.6"/>
+        </g>
+
+        <!-- nose -->
+        <polygon points="110,118 106,124 114,124" fill="#ffb3c6"/>
+        <line x1="110" y1="124" x2="110" y2="130" stroke="#2d2d2d" stroke-width="1.5"/>
+
+        <!-- mouth -->
+        <path id="cat-mouth" d="M103 130 Q110 137 117 130" stroke="#2d2d2d" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+        <!-- whiskers left -->
+        <line x1="80" y1="120" x2="44" y2="114" stroke="#b0896a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="80" y1="126" x2="44" y2="126" stroke="#b0896a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="80" y1="132" x2="44" y2="136" stroke="#b0896a" stroke-width="1.5" opacity="0.7"/>
+
+        <!-- whiskers right -->
+        <line x1="140" y1="120" x2="176" y2="114" stroke="#b0896a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="140" y1="126" x2="176" y2="126" stroke="#b0896a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="140" y1="132" x2="176" y2="136" stroke="#b0896a" stroke-width="1.5" opacity="0.7"/>
+
+        <!-- blush -->
+        <ellipse id="blush-left"  cx="76"  cy="118" rx="10" ry="6" fill="#ffb3c6" opacity="0"/>
+        <ellipse id="blush-right" cx="144" cy="118" rx="10" ry="6" fill="#ffb3c6" opacity="0"/>
+
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── flavor text ── -->
+  <p id="flavor-text" class="text-sm font-bold text-amber-500 mb-6 h-5 transition-all duration-300">
+    Click on the cat to pet it! 🐾
+  </p>
+
+  <!-- ── stats row ── -->
+  <div class="flex gap-6 text-center mb-6">
+    <div class="bg-white rounded-2xl px-5 py-3 shadow-sm border border-amber-100">
+      <p class="text-xs text-amber-300 font-bold uppercase tracking-wide">Best Combo</p>
+      <p id="best-combo" class="text-2xl font-black text-amber-500">x1</p>
+    </div>
+    <div class="bg-white rounded-2xl px-5 py-3 shadow-sm border border-amber-100">
+      <p class="text-xs text-pink-300 font-bold uppercase tracking-wide">Purrs</p>
+      <p id="purr-count" class="text-2xl font-black text-pink-500">0</p>
+    </div>
+    <div class="bg-white rounded-2xl px-5 py-3 shadow-sm border border-amber-100">
+      <p class="text-xs text-violet-300 font-bold uppercase tracking-wide">Level</p>
+      <p id="cat-level" class="text-2xl font-black text-violet-500">1</p>
+    </div>
+  </div>
+
+  <!-- ── milestone toast ── -->
+  <div id="milestone-toast"></div>
+
+  <script>
+    // ── state ──────────────────────────────────────────────────
+    let pets       = 0;
+    let combo      = 1;
+    let bestCombo  = 1;
+    let purrs      = 0;
+    let level      = 1;
+    let mood       = 40;       // 0–100
+    let comboTimer = null;
+    let bubbleTimer= null;
+
+    // ── DOM refs ───────────────────────────────────────────────
+    const catWrapper   = document.getElementById('cat-wrapper');
+    const catSvg       = document.getElementById('cat-svg');
+    const petCountEl   = document.getElementById('pet-count');
+    const comboEl      = document.getElementById('combo-count');
+    const bestComboEl  = document.getElementById('best-combo');
+    const purrCountEl  = document.getElementById('purr-count');
+    const catLevelEl   = document.getElementById('cat-level');
+    const moodFill     = document.getElementById('mood-fill');
+    const moodLabel    = document.getElementById('mood-label');
+    const flavorText   = document.getElementById('flavor-text');
+    const speechBubble = document.getElementById('speech-bubble');
+    const milestoneToast= document.getElementById('milestone-toast');
+    const blushL       = document.getElementById('blush-left');
+    const blushR       = document.getElementById('blush-right');
+    const catMouth     = document.getElementById('cat-mouth');
+
+    // ── reactions ─────────────────────────────────────────────
+    const reactions = [
+      { text: "Purrrr~ 🐾",   flavor: "The cat is purring softly!" },
+      { text: "Mrrrow! 😻",   flavor: "So happy! Ears go floof~"   },
+      { text: "Nyaa~ ✨",     flavor: "A love nyaa just for you!"  },
+      { text: "Biscuits! 🍞", flavor: "Making biscuits on your lap" },
+      { text: "Zoomies! 🌀",  flavor: "Cat has entered ZOOMIE mode" },
+      { text: "*headbutt* 💛",flavor: "You got a cat headbutt!"    },
+      { text: "MEOW! 🐱",     flavor: "Loud meow of approval!"     },
+      { text: "..zzz 💤",     flavor: "Gently snoozing on you~"    },
+      { text: "Chirp! 🐦",    flavor: "Spotted a bird outside!"    },
+      { text: "Mine! 🐾",     flavor: "You are claimed by the cat" },
+    ];
+
+    const comboReactions = [
+      { at: 3,  text: "Combo x3! 🔥",  flavor: "Getting warmed up!" },
+      { at: 5,  text: "Combo x5! 💫",  flavor: "On a roll!" },
+      { at: 10, text: "Combo x10! ⚡",  flavor: "Incredible petting!!" },
+      { at: 20, text: "Combo x20! 🌟",  flavor: "The cat is ECSTATIC!" },
+    ];
+
+    const milestones = [10, 25, 50, 100, 200, 500];
+
+    const emojis = ['❤️','✨','🌸','⭐','💕','🎀','🐾','💛','🌟','💫'];
+
+    // ── helpers ───────────────────────────────────────────────
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    function updateMoodUI() {
+      mood = Math.min(100, mood);
+      moodFill.style.width = mood + '%';
+      if (mood < 30)       moodLabel.textContent = 'Neutral';
+      else if (mood < 60)  moodLabel.textContent = 'Happy 😊';
+      else if (mood < 85)  moodLabel.textContent = 'Very Happy 😸';
+      else                 moodLabel.textContent = 'ECSTATIC 🤩';
+
+      // blush when happy
+      const blushOpacity = Math.max(0, (mood - 50) / 50);
+      blushL.setAttribute('opacity', blushOpacity);
+      blushR.setAttribute('opacity', blushOpacity);
+
+      // smile more when happier
+      if (mood > 70) {
+        catMouth.setAttribute('d', 'M100 130 Q110 140 120 130');
+      } else {
+        catMouth.setAttribute('d', 'M103 130 Q110 137 117 130');
+      }
+    }
+
+    function spawnParticles(x, y) {
+      const count = Math.min(3 + Math.floor(combo / 3), 8);
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'particle';
+        el.textContent = pick(emojis);
+        el.style.left = (x + (Math.random() - 0.5) * 80) + 'px';
+        el.style.top  = (y + (Math.random() - 0.5) * 40) + 'px';
+        el.style.animationDelay = (Math.random() * 0.2) + 's';
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }
+    }
+
+    function spawnPurrRing(x, y) {
+      const el = document.createElement('div');
+      el.className = 'purr-ring';
+      const size = 60 + Math.random() * 40;
+      el.style.width  = size + 'px';
+      el.style.height = size + 'px';
+      el.style.left   = (x - size / 2) + 'px';
+      el.style.top    = (y - size / 2) + 'px';
+      document.body.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }
+
+    function showSpeechBubble(text) {
+      speechBubble.textContent = text;
+      speechBubble.classList.add('show');
+      clearTimeout(bubbleTimer);
+      bubbleTimer = setTimeout(() => speechBubble.classList.remove('show'), 1800);
+    }
+
+    function showMilestone(text) {
+      milestoneToast.textContent = text;
+      milestoneToast.classList.remove('show');
+      void milestoneToast.offsetWidth; // reflow
+      milestoneToast.classList.add('show');
+      milestoneToast.style.opacity = '1';
+      setTimeout(() => {
+        milestoneToast.style.opacity = '0';
+        milestoneToast.style.transform = 'translate(-50%,-50%) scale(0)';
+        milestoneToast.classList.remove('show');
+      }, 2200);
+    }
+
+    function bounceCounter(el) {
+      el.classList.remove('count-bounce');
+      void el.offsetWidth;
+      el.classList.add('count-bounce');
+      el.addEventListener('animationend', () => el.classList.remove('count-bounce'), { once: true });
+    }
+
+    function wiggleCat() {
+      catSvg.classList.remove('wiggle');
+      void catSvg.offsetWidth;
+      catSvg.classList.add('wiggle');
+    }
+
+    // ── main click handler ─────────────────────────────────────
+    function handlePet(e) {
+      const cx = e.clientX ?? window.innerWidth / 2;
+      const cy = e.clientY ?? window.innerHeight / 2;
+
+      pets++;
+      combo++;
+      mood = Math.min(100, mood + 4);
+      purrs += combo;
+
+      // update level (every 20 pets)
+      const newLevel = Math.floor(pets / 20) + 1;
+      if (newLevel > level) {
+        level = newLevel;
+        catLevelEl.textContent = level;
+        bounceCounter(catLevelEl);
+        showMilestone(`Level ${level} unlocked! 🎉`);
+      }
+
+      // update best combo
+      if (combo > bestCombo) {
+        bestCombo = combo;
+        bestComboEl.textContent = 'x' + bestCombo;
+      }
+
+      // combo display
+      comboEl.textContent = 'x' + combo;
+      bounceCounter(comboEl);
+
+      // reset combo after 1.5s of no clicking
+      clearTimeout(comboTimer);
+      comboTimer = setTimeout(() => {
+        combo = 1;
+        comboEl.textContent = 'x1';
+      }, 1500);
+
+      // update score
+      petCountEl.textContent = pets;
+      bounceCounter(petCountEl);
+
+      // update purrs
+      purrCountEl.textContent = purrs;
+
+      // mood
+      updateMoodUI();
+
+      // visual effects
+      wiggleCat();
+      spawnParticles(cx, cy);
+      spawnPurrRing(cx, cy);
+
+      // combo-based reaction override
+      let reaction = pick(reactions);
+      const comboHit = comboReactions.find(r => r.at === combo);
+      if (comboHit) {
+        reaction = { text: comboHit.text, flavor: comboHit.flavor };
+      }
+
+      showSpeechBubble(reaction.text);
+      flavorText.textContent = reaction.flavor;
+
+      // milestones
+      if (milestones.includes(pets)) {
+        showMilestone(`🎉 ${pets} pets! You're a pro!`);
+      }
+    }
+
+    // ── keyboard support ───────────────────────────────────────
+    catWrapper.addEventListener('click',    handlePet);
+    catWrapper.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handlePet({ clientX: window.innerWidth/2, clientY: window.innerHeight/2 });
+      }
+    });
+
+    // ── mood decay over time ───────────────────────────────────
+    setInterval(() => {
+      if (mood > 30) {
+        mood = Math.max(30, mood - 1);
+        updateMoodUI();
+      }
+    }, 3000);
+
+    // init
+    updateMoodUI();
+  </script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #071926;
+  color: white;
+  font-family: "Fira Sans", sans-serif;
+}
+.top-banner {
+  width: inherit;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #071926;
+  background-image: linear-gradient(
+    90deg,
+    #c33300,
+    #df5a00,
+    #ff8700,
+    #ffab00,
+    #ffc700
+  );
+}
+.navbar {
+  width: inherit;
+  padding: 10px 40px;
+  margin-bottom: 40px;
+  background-color: #06334e;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #027acc;
+  box-shadow: 0 -3px 8px rgba(251, 23, 23, 0.819);
+  overflow: auto;
+  z-index: 50;
+}
+.nav-logo {
+  float: left;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 900;
+  background-image: linear-gradient(145deg, #0056bb, #0d7dce, #26caf3, #73ffff);
+  background-clip: text;
+  color: transparent;
+}
+.nav-menu {
+  float: right;
+  margin-top: 8px;
+}
+.nav-menu li {
+  display: inline-block;
+  list-style: none;
+  /* margin: 0 10px; */
+}
+.nav-menu a {
+  display: inline-block;
+  padding: 6px 12px;
+  text-decoration: none;
+  color: #b2b2b2;
+  font-size: 17px;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+.nav-menu a:hover {
+  color: white;
+  transform: scale(1.1);
+}
+.nav-menu a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 100%;
+  background-color: #0e486d;
+  border-bottom: 3px solid #43d9ff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+.nav-menu a:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.bio {
+  margin: auto;
+  margin-bottom: 50px;
+  width: 800px;
+  background-color: #0b263a;
+  border: 2px solid #073a5a;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 20px black;
+}
+.bio img {
+  width: 160px;
+  float: left;
+  margin-right: 30px;
+}
+.bio h2 {
+  font-size: 1.7em;
+  margin-bottom: 15px;
+  background-image: linear-gradient(145deg, #4248f3, #eb485c);
+  display: inline-block;
+  background-clip: text;
+  color: transparent;
+  cursor: default;
+}
+.bio h2::after {
+  content: "   Hey!!";
+  font-size: 0px;
+  color: white;
+  transition: 0.3s;
+  transform: scale(0);
+  transform-origin: center;
+}
+.bio h2:hover::after {
+  font-size: 15px;
+  transform: scale(1);
+}
+.bio p {
+  line-height: 25px;
+  text-align: justify;
+}
+.card-container {
+  margin: auto;
+  text-align: center;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border: 4px solid #e9f9ff;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgb(38 202 243 / 70%);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.card-container:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 25px rgb(38 202 243 / 90%);
+}
+.card-container .profile-wrapper {
+  position: relative;
+}
+.card-container .profile-wrapper .badge {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #eeeeee;
+  background-color: #e90404;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px #071926;
+  z-index: 20;
+}
+.card-container .profile-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+.card-container .profile-wrapper img:hover {
+  opacity: 1;
+}
+.schedule {
+  width: 800px;
+  margin: 50px auto 90px;
+  padding: 20px 20px 30px 20px;
+  text-align: center;
+  background-color: #0b263a;
+  border: 2px solid #06334e;
+  border-radius: 10px;
+  cursor: default;
+  box-shadow: 0 0 20px black;
+}
+.schedule h3 {
+  margin-bottom: 15px;
+}
+.schedule h3::before {
+  content: "🎮 ";
+  font-size: 25px;
+}
+.schedule ul {
+  list-style: none;
+}
+.schedule ul li {
+  padding: 10px 0;
+  transition: 0.3s ease;
+  transform-origin: bottom;
+}
+.schedule ul li:hover {
+  background-color: rgba(18, 85, 127, 0.498);
+  border-radius: 7px;
+  transform: scale(1.07) translate(0, -3px);
+}
+.schedule ul li:nth-child(even) {
+  background-color: #06334e;
+  border-radius: 7px;
+}
+.schedule ul li b {
+  color: #008cea;
+  font-weight: 800;
+}
+.gallery {
+  margin: auto;
+  width: 900px;
+  margin-bottom: 100px;
+  text-align: center;
+  /* border: 1px solid red; */
+}
+.gallery h3 {
+  border-left: 4px solid #008cea;
+  padding: 0 20px;
+  margin-bottom: 30px;
+  position: relative;
+  left: 30px;
+}
+.gallery .video-item {
+  display: inline-block;
+  width: 190px;
+  border: 1px solid #cecece;
+  border-bottom: 8px solid #cecece;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-right: 20px;
+  transition: 0.3s ease;
+  /* AGAR BOX SEJAJAR SEMUA KETIKA ADA TEKS YG 1 BARIS 2 BARIS */
+  vertical-align: top;
+}
+.gallery:hover .video-item:not(:hover) {
+  opacity: 0.3;
+}
+.gallery .video-item:hover {
+  transform: scale(1.1);
+  border: 1px solid #008cea;
+  border-bottom: 8px solid #008cea;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+.gallery .video-item:last-child {
+  margin-right: 0;
+}
+.gallery .video-item img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+}
+.gallery h3,
+h4,
+p {
+  text-align: left;
+}
+.gallery h4 {
+  font-size: 14px;
+  margin: 20px 0 10px 10px;
+}
+.gallery p {
+  font-size: 12px;
+  margin: 0 0 25px 10px;
+}
+.chat-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 50px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #008cea;
+  text-decoration: none;
+  text-align: center;
+  line-height: 62px;
+  /* box-shadow: 3px 3px 6px #ffffffb2; */
+  transition: 0.3s ease;
+}
+.chat-btn::after {
+  content: "💬";
+  font-size: 30px;
+}
+.chat-btn:hover {
+  transform: scale(1.2);
+  /* box-shadow: 3px 3px 10px #ffffffb2; */
+  border: 3px solid #43d9ff;
+  line-height: 55px;
+}
