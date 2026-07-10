@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f5f5f5;
+  font-family: "fira code";
+}
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  text-decoration: underline;
+  margin-bottom: 30px;
+}
+/* align-content     : flex-start | flex-end | center | space-between | space-around (untuk content lebih dr 1 baris) */
+main {
+  margin: auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  border: 1px solid red;
+}
+h2 {
+  margin-bottom: 20px;
+}
+h3 {
+  text-indent: 45px;
+}
+.wrapper {
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.168);
+  padding: 20px;
+}
+.container {
+  width: 250px;
+  border: 2px solid black;
+  display: flex;
+  margin: 5px 0 20px 45px;
+  [class^="box"] {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 600;
+    color: #f5f5f5;
+  }
+  .box1 {
+    background-color: #ff5347;
+  }
+  .box2 {
+    background-color: #ff9d4f;
+  }
+  .box3 {
+    background-color: #81d152;
+  }
+  .box4 {
+    background-color: #42adc7;
+  }
+}
+
+.flex-direction {
+  .row {
+    flex-direction: row;
+  }
+  .column {
+    flex-direction: column;
+  }
+  .row-reverse {
+    flex-direction: row-reverse;
+  }
+  .column-reverse {
+    flex-direction: column-reverse;
+  }
+}
+.justify-content {
+  .jc-flex-start {
+    justify-content: flex-start;
+  }
+  .jc-flex-end {
+    justify-content: flex-end;
+  }
+  .jc-center {
+    justify-content: center;
+  }
+  .jc-space-between {
+    justify-content: space-between;
+  }
+  .jc-space-around {
+    justify-content: space-around;
+  }
+  .jc-space-evenly {
+    justify-content: space-evenly;
+  }
+}
+.gap-and-wrap-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .gap {
+    gap: 20px;
+  }
+  .flex-wrap {
+    .nowrap,
+    .wrap,
+    .wrap-reverse {
+      width: 120px;
+    }
+    .nowrap {
+      flex-wrap: nowrap;
+    }
+    .wrap {
+      flex-wrap: wrap;
+    }
+    .wrap-reverse {
+      flex-wrap: wrap-reverse;
+    }
+  }
+}
+.align-items {
+  .box1 {
+    height: 40px;
+  }
+  .box2 {
+    height: 20px;
+  }
+  .box3 {
+    height: 50px;
+  }
+  .box4 {
+    height: 30px;
+  }
+  .ai-flex-start {
+    align-items: flex-start;
+  }
+  .ai-flex-end {
+    align-items: flex-end;
+  }
+  .ai-center {
+    align-items: center;
+  }
+  .ai-strecth {
+    align-items: stretch;
+    [class^="box"] {
+      height: auto;
+    }
+  }
+  .ai-baseline {
+    align-items: baseline;
+    text-decoration: underline;
+  }
+}
