@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coba Variable</title>
+    <style>
+      /* fungsi :root adalah agar property pribadi yg kita buat bisa dipakai oleh semua selector di html (global variable). sedangkan jika kita membuat property pribadi di dalam selector seperti "main" maka dia hanya bisa dipakai oleh main dan anak-anaknya main (local variable). contoh global variable adalah --brand-color pada :root, contoh local variable adalah --favorite-food pada main. */
+      /* CSS variable ini sangat berguna apabila kita kedepannya akan sering menggunakan (contoh) warna yg sama. jadi tidak perlu merubah warna pada tiap selector, tapi cukup langsung mengubah variable induknya di dalam :root  */
+      :root {
+        --brand-color: blue;
+      }
+
+      main {
+        font-size: 2rem;
+        --favorite-food: tomato;
+      }
+      h1 {
+        color: var(--brand-color);
+      }
+      p {
+        color: var(--brand-color);
+      }
+      a {
+        color: var(--favorite-food);
+        --font
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Coba CSS Variables</h1>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor molestiae
+      laboriosam labore nesciunt corporis ab incidunt ducimus alias,
+      reprehenderit autem et veniam adipisci porro iste fugit perspiciatis velit
+      accusantium iure.
+    </p>
+    <main>
+      <section>
+        <a href="#">Hello WPU</a>
+      </section>
+    </main>
+  </body>
+</html>

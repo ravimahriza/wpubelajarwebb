@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style-coba.css" />
+    <title>Coba Duplikat Viewport</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Eksplorasi Unit Viewport Murni</h1>
+        <p>
+          Belajar cara kerja unit responsif modern: vw, vh, vmin, dan vmax
+          secara terpisah sebelum memadukannya dengan fungsi kalkulasi.
+        </p>
+      </header>
+
+      <section>
+        <h2>
+          Bagian 1: Contoh Kasus Viewport Width (vw) & Viewport Height (vh)
+        </h2>
+        <p>
+          Unit <code>vw</code> (lebar) dan <code>vh</code> (tinggi) mengacu pada
+          ukuran layar browser pengguna. <code>1vw</code> setara dengan 1.100
+          (1%) dari lebar browser, sedangkan <code>1vh</code> setara dengan
+          1/100 (1%) dari tinggi browser
+        </p>
+
+        <div class="card">
+          <div class="vh-demo">
+            <h4>Banner Responsif Vertikal</h4>
+            <span>Tinggi Banner = 30vh</span>
+          </div>
+          <div class="vh-desc">
+            <div class="box-code">
+              <pre><code><span class="selector">.hero-banner</span> {
+    <span class="property">height</span>: <span class="value">30</span><span class="unit">vh</span>;
+    <span class="property">width</span>: <span class="value">100</span><span class="unit">%</span>;
+  }</code></pre>
+            </div>
+            <div class="box-desc">
+              <span class="badge badge-true">height: 30vh</span>
+              <h3>Tinggi Berbasis Persentase Layar</h3>
+              <p>
+                Mengunci tinggi banner sebesar 30% dari tinggi layar browser.
+                Tinggi banner ini akan secara otomatis memanjang atau memendek
+                mengikuti perubahan tinggi browser secara dinamis.
+              </p>
+              <div class="tips">
+                <strong>Petunjuk Uji Coba:</strong> Tarik browser Anda ke
+                atas/bawah (ubah tinggi layar). Anda akan melihat tinggi banner
+                di atas menyesuaikan secara instan.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
